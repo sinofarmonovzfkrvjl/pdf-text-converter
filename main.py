@@ -5,7 +5,7 @@ import os
 
 st.title("PDF to Text Converter")
 
-tab_1, tab_2 = st.tabs(["pdf to text", "text to pdf"])
+tab_1, tab_2, make_pdf = st.tabs(["pdf to text", "text to pdf", "make pdf"])
 
 with tab_1:
     uploaded_file = st.file_uploader("Upload your PDF", type=["pdf"])
@@ -37,6 +37,19 @@ with tab_2:
             label="Download PDF",
             data=open("output.pdf", "rb").read(),
             file_name="converted_pdf.pdf",
+            mime="application/pdf",
+        )
+        os.remove("output.pdf")
+
+with make_pdf:
+    title = st.text_input("Enter your title")
+    text = st.text_area("Enter your text")
+    if st.button("Make PDF"):
+        text_to_pdf(text)
+        st.download_button(
+            label="Download PDF",
+            data=open("output.pdf", "rb").read(),
+            file_name=f"{title}.pdf",
             mime="application/pdf",
         )
         os.remove("output.pdf")
