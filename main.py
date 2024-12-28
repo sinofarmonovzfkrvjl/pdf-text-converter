@@ -2,6 +2,7 @@ import streamlit as st
 from functions import pdf_to_text, text_to_pdf
 import os
 
+st.set_page_config(page_title="PDF Text Convertor", page_icon=":books:")
 
 st.title("PDF to Text Converter")
 
